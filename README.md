@@ -1,6 +1,6 @@
-# lto-candidate-testing-ansible
+# testing-ansible
 
-This is the git repository lto-candidate-testing-ansible.
+This is the git repository testing-ansible.
 
 It is designed to test your understanding of the [Ansible](https://www.ansible.com/) tool.
 
