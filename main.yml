@@ -1,0 +1,48 @@
+---
+## Creating EC2 Infra
+
+- name: Create a new instance
+  hosts: localhost
+  connection: local
+  gather_facts: True
+  tasks:
+    - name: Launch instance
+      ec2:
+         aws_access_key: "{{ instance.access_key}}"
+         aws_secret_key: "{{ instance.secret_key}}"
+         key_name: "{{ instance.keypair }}"
+         group_id: "{{ instance.security_group }}"
+         instance_type: "{{ instance.instance_type }}"
+         image: "{{ instance.image }}"
+         wait: true
+         region: "{{ instance.region }}"
+         vpc_subnet_id: "{{ instance.subnet }}"
+         assign_public_ip: yes
+      register: ec2
+    - name: Add new instance to host group
+      add_host: hostname={{ item.public_ip }} groupname={{ instance.groupname }}
+      with_items: "{{ ec2.instances }}"
+    - name: Wait for SSH to come up
+      wait_for: host={{ item.public_dns_name }} port=22 delay=60 timeout=320 state=started
+      with_items: "{{ ec2.instances }}"
+
+## Configuring newly created Instance and using ami role to create ami
+- name: configure new instance
+  hosts: webservers
+  sudo: yes
+  remote_user: root
+  gather_facts: True
+  wait: true
+  roles:
+       - ql_common_linux
+       - webserver
+
+## Create AMI once configured
+
+- name: Create AMI
+  shell: echo "Creating AMI"
+  hosts: localhost
+  roles:
+       - amirole
+
+

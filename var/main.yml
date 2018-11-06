@@ -1,0 +1,16 @@
+
+
+---
+##Var main file containg metadata and info
+### Encrypt this file using ansible-vault
+- instance:
+    access_key: aaaaazzz
+    secret_key: aaaaazzzz
+    keypair: ansible
+    instance_type: t2.micro
+    security_group: sg-ba9a5ede
+    image: ami-f95ef58a
+    region: eu-west-1
+    subnet: subnet-7a522c0d
+    groupname: webservers
+

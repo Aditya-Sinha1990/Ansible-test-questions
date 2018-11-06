@@ -1,0 +1,11 @@
+---
+# playbook to configure httpd.conf file
+#Copying html file from source to destination
+- name: httpd.conf file
+  copy: src=httpd.conf dest=/etc/httpd/conf/httpd.conf
+#src is file directory in apache main directory where we can store customer specific conf file of apache and html files
+#using notify to restart service if changes occurs in conf or html file
+  notify:
+     restart apache service
+- name: copying index.html file
+  copy: src=index.html dest=/var/www/html/index.html

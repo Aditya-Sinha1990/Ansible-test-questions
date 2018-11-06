@@ -1,0 +1,9 @@
+---
+## Creating AMI once the instance is created and roles are applied
+- ec2_ami:
+      instance_id: i-xxxxxx
+      wait: yes
+      name: newtest
+      tags:
+         Name: qantastest
+         role: qantaswebserver

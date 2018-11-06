@@ -1,0 +1,10 @@
+---
+# tasks file for apache
+# using insatll.yml as apache installation code
+# using config.yml to configure the httpd.conf file as per the requirements and make changes when needed.
+# using serv.yml as the service file which takes care of service when changes are there and restart is required.
+
+- include: install.yml
+- include: config.yml
+- include: serv.yml 
+

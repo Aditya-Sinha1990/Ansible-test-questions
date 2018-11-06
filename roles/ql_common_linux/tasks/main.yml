@@ -1,0 +1,61 @@
+---
+# tasks file for ql_common_linux
+
+### EPEL repo
+
+- name: Ensure epel repo present
+  yum:
+    name: epel-release
+    state: present
+
+### Upgrding all the available packages
+- name: upgrade all packages
+   yum:
+     name: '*'
+     state: latest 
+
+### Standard packages
+
+- name: Ensure common packages present
+  yum:
+    name: acl
+    state: present
+
+- name: Ensure common packages present
+  yum:
+    name: screen
+    state: present
+
+- name: Ensure common packages present
+  yum:
+    name: bash-completion
+    state: present
+
+- name: Ensure common packages present
+  yum:
+    name: dos2unix
+    state: present
+
+### Making sure all packages are updated and using latest of htop, enabling epel repo and dissable gpgcheck
+- name: Ensure common packages present
+  yum:
+    name: htop
+    state: latest
+    enablerepo: "epel"
+    gpgcheck: no
+
+- name: Ensure common packages present
+  yum:
+    name: mlocate
+    state: present
+
+- name: Ensure common packages present
+  yum:
+    name: unzip
+    state: present
+
+- name: Ensure common packages present
+  yum:
+    name: wget
+    state: present
+

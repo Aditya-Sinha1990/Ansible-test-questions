@@ -1,0 +1,5 @@
+---
+# Starting the Apache httpd service
+- name: start apache service
+  service: name=httpd state=started
+

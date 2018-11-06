@@ -1,0 +1,7 @@
+---
+#Insatlling the apache or httpd package to host it as webserver
+- name: install apache
+  yum:
+    name: httpd
+    state: latest
+
